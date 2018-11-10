@@ -1,0 +1,32 @@
+SALARY_RAISE_FACTOR = {'WA': 0.05, 'TX': -0.02, 'CO': 0.02}
+STATE_CODE_MAP = {'WA': 'Washington', 'TX': 'Texas', 'CO': 'Colorado'}
+
+  
+# This is the beginning of the script
+
+class Salary:
+
+    def update_employee_record(rec):
+        
+        state_code = rec['state_code']
+        rec ['state_name'] = STATE_CODE_MAP[state_code]
+        SFR= SALARY_RAISE_FACTOR[state_code]
+        old_sal = rec['salary']
+        new_sal = old_sal * (1+SFR)
+        rec['salary'] = new_sal
+        
+        
+    input_data = [
+        {'employee_name': 'Susan', 'salary': 100000, 'state_code': 'WA'},
+        {'employee_name': 'Ellen', 'salary': 100000, 'state_code': 'TX'},
+        {'employee_name': "Jane", 'salary': 100000, 'state_code': 'CO'},
+        {'employee_name': "Anne", 'salary': 110000, 'state_code': 'WA'},
+    ]
+
+    for rec in input_data:
+        update_employee_record(rec)
+        name = rec['employee_name']
+        salary = rec['salary']
+        state = rec['state_name']
+        print(name + ' now lives in ' +  state)
+        print( '   and makes $' +  str(salary))
